@@ -10,7 +10,7 @@ import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 export class ProductResolver {
   constructor(private prisma: PrismaService) {}
 
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Query(() => [Product])
   async products() {
     return await this.prisma.product.findMany();
