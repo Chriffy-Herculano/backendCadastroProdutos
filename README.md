@@ -11,8 +11,55 @@ API construída com **NestJS**, usando **GraphQL**, **Prisma** e autenticação 
 * Prisma ORM
 * JWT (autenticação)
 * TypeScript
+* Docker 🐳
 
 ---
+
+# 🐳 🚀 Rodando com Docker (RECOMENDADO)
+
+## ✅ Pré-requisitos
+
+* Docker instalado
+* Docker Desktop em execução
+
+---
+
+## ▶️ 1. Subir aplicação
+
+```bash
+docker compose up --build
+```
+
+---
+
+## 🧠 2. Rodar Prisma (IMPORTANTE)
+
+Abra outro terminal e rode:
+
+```bash
+docker exec -it backend_app npx prisma db push
+```
+
+> ⚠️ Esse passo é necessário na primeira execução ou quando houver mudanças no schema do Prisma
+
+---
+
+## 🌐 3. Acessar API
+
+```
+http://localhost:3001/graphql
+```
+
+---
+
+## ⚠️ Sobre as portas
+
+* O backend roda na porta **3000 dentro do container**
+* O Docker expõe na porta **3001 no seu computador**
+
+---
+
+# 💻 ⚙️ Rodando local (sem Docker)
 
 ## ⚙️ Como rodar o projeto
 
@@ -88,3 +135,42 @@ Authorization: Bearer SEU_TOKEN
 ```bash
 # desenvolvimento
 npm run start:dev
+
+# build
+npm run build
+
+# produção
+npm run start:prod
+```
+
+---
+
+# ⚠️ Observações importantes
+
+* O banco de dados é iniciado automaticamente via Docker
+* Sempre rode o Prisma após subir os containers (na primeira vez)
+* Certifique-se de que o Docker Desktop está em execução
+* A API ficará disponível em:
+
+```
+http://localhost:3001/graphql
+```
+
+---
+
+# 🚀 Pronto!
+
+Agora você pode rodar o projeto de duas formas:
+
+## 🐳 Docker (recomendado)
+
+```bash
+docker compose up --build
+```
+
+## 💻 Local
+
+```bash
+npm install
+npm run start:dev
+```

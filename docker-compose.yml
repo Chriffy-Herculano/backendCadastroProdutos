@@ -1,0 +1,26 @@
+services:
+  db:
+    image: postgres:15
+    container_name: backend_db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: app
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build: .
+    container_name: backend_app
+    ports:
+      - "3001:3000"
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/app?schema=public
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
